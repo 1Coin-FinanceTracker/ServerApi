@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>OneCoinServer API</title>
+  <title>OpenAPI definition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -689,45 +689,29 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["InventoryItem"] = {
-  "required" : [ "id", "manufacturer", "name", "releaseDate" ],
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "string",
-      "format" : "uuid",
-      "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
-    },
-    "name" : {
-      "type" : "string",
-      "example" : "Widget Adapter"
-    },
-    "releaseDate" : {
-      "type" : "string",
-      "format" : "date-time",
-      "example" : "2016-08-29T09:12:33.001Z"
-    },
-    "manufacturer" : {
-      "$ref" : "#/components/schemas/Manufacturer"
-    }
-  }
-};
-            defs["Manufacturer"] = {
-  "required" : [ "name" ],
+            defs["User"] = {
+  "required" : [ "authTypes", "login", "name" ],
   "type" : "object",
   "properties" : {
     "name" : {
-      "type" : "string",
-      "example" : "ACME Corporation"
+      "type" : "string"
     },
-    "homePage" : {
-      "type" : "string",
-      "format" : "url",
-      "example" : "https://www.acme-corp.com"
+    "login" : {
+      "type" : "string"
     },
-    "phone" : {
-      "type" : "string",
-      "example" : "408-867-5309"
+    "authTypes" : {
+      "uniqueItems" : true,
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "enum" : [ "EM", "GGL" ]
+      }
+    },
+    "email" : {
+      "type" : "string"
+    },
+    "googleId" : {
+      "type" : "string"
     }
   }
 };
@@ -747,13 +731,31 @@
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="Admins"><a href="#api-Admins">API Methods - Admins</a></li>
-                    <li data-group="Admins" data-name="addInventory" class="">
-                      <a href="#api-Admins-addInventory">addInventory</a>
+                  <li class="nav-header" data-group="AuthController"><a href="#api-AuthController">API Methods - AuthController</a></li>
+                    <li data-group="AuthController" data-name="loginByGoogle" class="">
+                      <a href="#api-AuthController-loginByGoogle">loginByGoogle</a>
                     </li>
-                  <li class="nav-header" data-group="Developers"><a href="#api-Developers">API Methods - Developers</a></li>
-                    <li data-group="Developers" data-name="searchInventory" class="">
-                      <a href="#api-Developers-searchInventory">searchInventory</a>
+                    <li data-group="AuthController" data-name="loginByOtp" class="">
+                      <a href="#api-AuthController-loginByOtp">loginByOtp</a>
+                    </li>
+                    <li data-group="AuthController" data-name="loginByTotp" class="">
+                      <a href="#api-AuthController-loginByTotp">loginByTotp</a>
+                    </li>
+                    <li data-group="AuthController" data-name="registerByEmail" class="">
+                      <a href="#api-AuthController-registerByEmail">registerByEmail</a>
+                    </li>
+                    <li data-group="AuthController" data-name="registerByGoogle" class="">
+                      <a href="#api-AuthController-registerByGoogle">registerByGoogle</a>
+                    </li>
+                    <li data-group="AuthController" data-name="requestOtp" class="">
+                      <a href="#api-AuthController-requestOtp">requestOtp</a>
+                    </li>
+                  <li class="nav-header" data-group="UserController"><a href="#api-UserController">API Methods - UserController</a></li>
+                    <li data-group="UserController" data-name="generateUserTotpSeed" class="">
+                      <a href="#api-UserController-generateUserTotpSeed">generateUserTotpSeed</a>
+                    </li>
+                    <li data-group="UserController" data-name="getUserInfo" class="">
+                      <a href="#api-UserController-getUserInfo">getUserInfo</a>
                     </li>
           </ul>
         </nav>
@@ -761,7 +763,7 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>OneCoinServer API</h1>
+            <h1>OpenAPI definition</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -770,102 +772,106 @@
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>OneCoinServer API</div>
+            <div>No description provided (generated by Swagger Codegen https://github.com/swagger-api/swagger-codegen)</div>
           </div>
         </div>
         <div id="sections">
-                <section id="api-Admins">
-                  <h1>Admins</h1>
-                    <div id="api-Admins-addInventory">
-                      <article id="api-Admins-addInventory-0" data-group="User" data-name="addInventory" data-version="0">
+                <section id="api-AuthController">
+                  <h1>AuthController</h1>
+                    <div id="api-AuthController-loginByGoogle">
+                      <article id="api-AuthController-loginByGoogle-0" data-group="User" data-name="loginByGoogle" data-version="0">
                         <div class="pull-left">
-                          <h1>addInventory</h1>
-                          <p>adds an inventory item</p>
+                          <h1>loginByGoogle</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Adds an item to the system</p>
+                        <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/inventory</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/auth/login/google</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Admins-addInventory-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Admins-addInventory-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Admins-addInventory-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Admins-addInventory-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Admins-addInventory-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Admins-addInventory-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Admins-addInventory-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Admins-addInventory-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Admins-addInventory-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Admins-addInventory-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Admins-addInventory-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-AuthController-loginByGoogle-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-loginByGoogle-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-loginByGoogle-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByGoogle-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Admins-addInventory-0-curl">
+                          <div class="tab-pane active" id="examples-AuthController-loginByGoogle-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
--H "Content-Type: application/json"\
-"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/inventory"</code></pre>
+-H "Accept: */*"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/auth/login/google"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Admins-addInventory-0-java">
+                          <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.AdminsApi;
+import io.swagger.client.api.AuthControllerApi;
 
 import java.io.File;
 import java.util.*;
 
-public class AdminsApiExample {
+public class AuthControllerApiExample {
 
     public static void main(String[] args) {
         
-        AdminsApi apiInstance = new AdminsApi();
-        InventoryItem body = ; // InventoryItem | Inventory item to add
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String authorization = authorization_example; // String | 
         try {
-            apiInstance.addInventory(body);
+            'String' result = apiInstance.loginByGoogle(authorization);
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdminsApi#addInventory");
+            System.err.println("Exception when calling AuthControllerApi#loginByGoogle");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Admins-addInventory-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AdminsApi;
+                          <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
 
-public class AdminsApiExample {
+public class AuthControllerApiExample {
 
     public static void main(String[] args) {
-        AdminsApi apiInstance = new AdminsApi();
-        InventoryItem body = ; // InventoryItem | Inventory item to add
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String authorization = authorization_example; // String | 
         try {
-            apiInstance.addInventory(body);
+            'String' result = apiInstance.loginByGoogle(authorization);
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdminsApi#addInventory");
+            System.err.println("Exception when calling AuthControllerApi#loginByGoogle");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Admins-addInventory-0-groovy">
+  <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Admins-addInventory-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">InventoryItem *body = ; // Inventory item to add (optional)
+                            <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // 
 
-AdminsApi *apiInstance = [[AdminsApi alloc] init];
+AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
 
-// adds an inventory item
-[apiInstance addInventoryWith:body
-              completionHandler: ^(NSError* error) {
+[apiInstance loginByGoogleWith:authorization
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -873,28 +879,27 @@ AdminsApi *apiInstance = [[AdminsApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Admins-addInventory-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var OneCoinServerApi = require('one_coin_server_api');
+                            <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
 
-var api = new OneCoinServerApi.AdminsApi()
-var opts = { 
-  'body':  // {{InventoryItem}} Inventory item to add
-};
+var api = new OpenApiDefinition.AuthControllerApi()
+var authorization = authorization_example; // {{String}} 
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.addInventory(opts, callback);
+api.loginByGoogle(authorization, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Admins-addInventory-0-angular">
+                            <!--<div class="tab-pane" id="examples-AuthController-loginByGoogle-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Admins-addInventory-0-csharp">
+                            <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -903,22 +908,22 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class addInventoryExample
+    public class loginByGoogleExample
     {
         public void main()
         {
 
-            var apiInstance = new AdminsApi();
-            var body = new InventoryItem(); // InventoryItem | Inventory item to add (optional) 
+            var apiInstance = new AuthControllerApi();
+            var authorization = authorization_example;  // String | 
 
             try
             {
-                // adds an inventory item
-                apiInstance.addInventory(body);
+                'String' result = apiInstance.loginByGoogle(authorization);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AdminsApi.addInventory: " + e.Message );
+                Debug.Print("Exception when calling AuthControllerApi.loginByGoogle: " + e.Message );
             }
         }
     }
@@ -926,38 +931,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Admins-addInventory-0-php">
+                            <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\ApiAdminsApi();
-$body = ; // InventoryItem | Inventory item to add
+$api_instance = new Swagger\Client\ApiAuthControllerApi();
+$authorization = authorization_example; // String | 
 
 try {
-    $api_instance->addInventory($body);
+    $result = $api_instance->loginByGoogle($authorization);
+    print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AdminsApi->addInventory: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthControllerApi->loginByGoogle: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Admins-addInventory-0-perl">
+                            <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::AdminsApi;
+use WWW::SwaggerClient::AuthControllerApi;
 
-my $api_instance = WWW::SwaggerClient::AdminsApi->new();
-my $body = WWW::SwaggerClient::Object::InventoryItem->new(); # InventoryItem | Inventory item to add
+my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
+my $authorization = authorization_example; # String | 
 
 eval { 
-    $api_instance->addInventory(body => $body);
+    my $result = $api_instance->loginByGoogle(authorization => $authorization);
+    print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling AdminsApi->addInventory: $@\n";
+    warn "Exception when calling AuthControllerApi->loginByGoogle: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Admins-addInventory-0-python">
+                            <div class="tab-pane" id="examples-AuthController-loginByGoogle-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -965,14 +972,888 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.AdminsApi()
-body =  # InventoryItem | Inventory item to add (optional)
+api_instance = swagger_client.AuthControllerApi()
+authorization = authorization_example # String | 
 
 try: 
-    # adds an inventory item
-    api_instance.add_inventory(body=body)
+    api_response = api_instance.login_by_google(authorization)
+    pprint(api_response)
 except ApiException as e:
-    print("Exception when calling AdminsApi->addInventory: %s\n" % e)</code></pre>
+    print("Exception when calling AuthControllerApi->loginByGoogle: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_loginByGoogle_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-loginByGoogle-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-loginByGoogle-200-schema">
+                                  <div id='responses-loginByGoogle-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-loginByGoogle-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-loginByGoogle-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-loginByGoogle-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AuthController-loginByOtp">
+                      <article id="api-AuthController-loginByOtp-0" data-group="User" data-name="loginByOtp" data-version="0">
+                        <div class="pull-left">
+                          <h1>loginByOtp</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/auth/login/otp</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AuthController-loginByOtp-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-loginByOtp-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-loginByOtp-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByOtp-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AuthController-loginByOtp-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: */*"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/auth/login/otp"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AuthController-loginByOtp-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AuthControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String authorization = authorization_example; // String | 
+        try {
+            'String' result = apiInstance.loginByOtp(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#loginByOtp");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AuthController-loginByOtp-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String authorization = authorization_example; // String | 
+        try {
+            'String' result = apiInstance.loginByOtp(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#loginByOtp");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AuthController-loginByOtp-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AuthController-loginByOtp-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // 
+
+AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
+
+[apiInstance loginByOtpWith:authorization
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByOtp-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+var api = new OpenApiDefinition.AuthControllerApi()
+var authorization = authorization_example; // {{String}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.loginByOtp(authorization, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AuthController-loginByOtp-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AuthController-loginByOtp-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class loginByOtpExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new AuthControllerApi();
+            var authorization = authorization_example;  // String | 
+
+            try
+            {
+                'String' result = apiInstance.loginByOtp(authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthControllerApi.loginByOtp: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByOtp-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiAuthControllerApi();
+$authorization = authorization_example; // String | 
+
+try {
+    $result = $api_instance->loginByOtp($authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AuthControllerApi->loginByOtp: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByOtp-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AuthControllerApi;
+
+my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
+my $authorization = authorization_example; # String | 
+
+eval { 
+    my $result = $api_instance->loginByOtp(authorization => $authorization);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AuthControllerApi->loginByOtp: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByOtp-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AuthControllerApi()
+authorization = authorization_example # String | 
+
+try: 
+    api_response = api_instance.login_by_otp(authorization)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AuthControllerApi->loginByOtp: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_loginByOtp_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-loginByOtp-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-loginByOtp-200-schema">
+                                  <div id='responses-loginByOtp-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-loginByOtp-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-loginByOtp-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-loginByOtp-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AuthController-loginByTotp">
+                      <article id="api-AuthController-loginByTotp-0" data-group="User" data-name="loginByTotp" data-version="0">
+                        <div class="pull-left">
+                          <h1>loginByTotp</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/auth/login/totp</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AuthController-loginByTotp-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-loginByTotp-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-loginByTotp-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-loginByTotp-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AuthController-loginByTotp-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: */*"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/auth/login/totp"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AuthController-loginByTotp-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AuthControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String authorization = authorization_example; // String | 
+        try {
+            'String' result = apiInstance.loginByTotp(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#loginByTotp");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AuthController-loginByTotp-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String authorization = authorization_example; // String | 
+        try {
+            'String' result = apiInstance.loginByTotp(authorization);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#loginByTotp");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AuthController-loginByTotp-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AuthController-loginByTotp-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *authorization = authorization_example; // 
+
+AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
+
+[apiInstance loginByTotpWith:authorization
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByTotp-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+var api = new OpenApiDefinition.AuthControllerApi()
+var authorization = authorization_example; // {{String}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.loginByTotp(authorization, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AuthController-loginByTotp-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AuthController-loginByTotp-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class loginByTotpExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new AuthControllerApi();
+            var authorization = authorization_example;  // String | 
+
+            try
+            {
+                'String' result = apiInstance.loginByTotp(authorization);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthControllerApi.loginByTotp: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByTotp-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiAuthControllerApi();
+$authorization = authorization_example; // String | 
+
+try {
+    $result = $api_instance->loginByTotp($authorization);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AuthControllerApi->loginByTotp: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByTotp-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AuthControllerApi;
+
+my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
+my $authorization = authorization_example; # String | 
+
+eval { 
+    my $result = $api_instance->loginByTotp(authorization => $authorization);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AuthControllerApi->loginByTotp: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-loginByTotp-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AuthControllerApi()
+authorization = authorization_example # String | 
+
+try: 
+    api_response = api_instance.login_by_totp(authorization)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AuthControllerApi->loginByTotp: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+                            <div class="methodsubtabletitle">Header parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">Authorization*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_loginByTotp_authorization">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-loginByTotp-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-loginByTotp-200-schema">
+                                  <div id='responses-loginByTotp-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-loginByTotp-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-loginByTotp-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-loginByTotp-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AuthController-registerByEmail">
+                      <article id="api-AuthController-registerByEmail-0" data-group="User" data-name="registerByEmail" data-version="0">
+                        <div class="pull-left">
+                          <h1>registerByEmail</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/auth/register/email</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AuthController-registerByEmail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-registerByEmail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-registerByEmail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByEmail-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AuthController-registerByEmail-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: */*"\
+-H "Content-Type: application/json"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/auth/register/email"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AuthController-registerByEmail-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AuthControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        User body = ; // User | 
+        try {
+            User result = apiInstance.registerByEmail(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#registerByEmail");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AuthController-registerByEmail-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        User body = ; // User | 
+        try {
+            User result = apiInstance.registerByEmail(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#registerByEmail");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AuthController-registerByEmail-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AuthController-registerByEmail-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">User *body = ; // 
+
+AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
+
+[apiInstance registerByEmailWith:body
+              completionHandler: ^(User output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-registerByEmail-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+var api = new OpenApiDefinition.AuthControllerApi()
+var body = ; // {{User}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.registerByEmail(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AuthController-registerByEmail-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AuthController-registerByEmail-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class registerByEmailExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new AuthControllerApi();
+            var body = new User(); // User | 
+
+            try
+            {
+                User result = apiInstance.registerByEmail(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthControllerApi.registerByEmail: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-registerByEmail-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiAuthControllerApi();
+$body = ; // User | 
+
+try {
+    $result = $api_instance->registerByEmail($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AuthControllerApi->registerByEmail: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-registerByEmail-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AuthControllerApi;
+
+my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
+my $body = WWW::SwaggerClient::Object::User->new(); # User | 
+
+eval { 
+    my $result = $api_instance->registerByEmail(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AuthControllerApi->registerByEmail: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-registerByEmail-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AuthControllerApi()
+body =  # User | 
+
+try: 
+    api_response = api_instance.register_by_email(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AuthControllerApi->registerByEmail: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -986,21 +1867,21 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">body </td>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
                                 <td>
                                 
                                 
                                 <script>
                                 $(document).ready(function() {
                                   var schemaWrapper = {
-  "description" : "Inventory item to add",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/InventoryItem"
+        "$ref" : "#/components/schemas/User"
       }
     }
-  }
+  },
+  "required" : true
 };
                                   var schema = schemaWrapper.content["application/json"].schema;
                                   if (schema.$ref != null) {
@@ -1014,12 +1895,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_addInventory_body');
+                                  var result = $('#d2e199_registerByEmail_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_addInventory_body"></div>
+                                <div id="d2e199_registerByEmail_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -1027,138 +1908,149 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 201 - item created </h3>
+                            <h3> Status: 200 - OK </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-registerByEmail-200-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
+                                <div class="tab-pane active" id="responses-registerByEmail-200-schema">
+                                  <div id='responses-registerByEmail-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/User"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
 
-                            <h3> Status: 400 - invalid input, object invalid </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 409 - an existing item already exists </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-registerByEmail-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-registerByEmail-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-registerByEmail-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                  </section>
-                <section id="api-Developers">
-                  <h1>Developers</h1>
-                    <div id="api-Developers-searchInventory">
-                      <article id="api-Developers-searchInventory-0" data-group="User" data-name="searchInventory" data-version="0">
+                    <div id="api-AuthController-registerByGoogle">
+                      <article id="api-AuthController-registerByGoogle-0" data-group="User" data-name="registerByGoogle" data-version="0">
                         <div class="pull-left">
-                          <h1>searchInventory</h1>
-                          <p>searches inventory</p>
+                          <h1>registerByGoogle</h1>
+                          <p></p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">By passing in the appropriate options, you can search for
-available inventory in the system
-</p>
+                        <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/inventory</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/v1/auth/register/google</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Developers-searchInventory-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Developers-searchInventory-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Developers-searchInventory-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Developers-searchInventory-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Developers-searchInventory-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Developers-searchInventory-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Developers-searchInventory-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Developers-searchInventory-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Developers-searchInventory-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Developers-searchInventory-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Developers-searchInventory-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-AuthController-registerByGoogle-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-registerByGoogle-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-registerByGoogle-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-registerByGoogle-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Developers-searchInventory-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/inventory?searchString=&skip=&limit="</code></pre>
+                          <div class="tab-pane active" id="examples-AuthController-registerByGoogle-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: */*"\
+-H "Content-Type: application/json"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/auth/register/google"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Developers-searchInventory-0-java">
+                          <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DevelopersApi;
+import io.swagger.client.api.AuthControllerApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DevelopersApiExample {
+public class AuthControllerApiExample {
 
     public static void main(String[] args) {
         
-        DevelopersApi apiInstance = new DevelopersApi();
-        String searchString = searchString_example; // String | pass an optional search string for looking up inventory
-        Integer skip = 56; // Integer | number of records to skip for pagination
-        Integer limit = 56; // Integer | maximum number of records to return
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        User body = ; // User | 
         try {
-            array[InventoryItem] result = apiInstance.searchInventory(searchString, skip, limit);
+            User result = apiInstance.registerByGoogle(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DevelopersApi#searchInventory");
+            System.err.println("Exception when calling AuthControllerApi#registerByGoogle");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Developers-searchInventory-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DevelopersApi;
+                          <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
 
-public class DevelopersApiExample {
+public class AuthControllerApiExample {
 
     public static void main(String[] args) {
-        DevelopersApi apiInstance = new DevelopersApi();
-        String searchString = searchString_example; // String | pass an optional search string for looking up inventory
-        Integer skip = 56; // Integer | number of records to skip for pagination
-        Integer limit = 56; // Integer | maximum number of records to return
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        User body = ; // User | 
         try {
-            array[InventoryItem] result = apiInstance.searchInventory(searchString, skip, limit);
+            User result = apiInstance.registerByGoogle(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DevelopersApi#searchInventory");
+            System.err.println("Exception when calling AuthControllerApi#registerByGoogle");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Developers-searchInventory-0-groovy">
+  <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Developers-searchInventory-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *searchString = searchString_example; // pass an optional search string for looking up inventory (optional)
-Integer *skip = 56; // number of records to skip for pagination (optional)
-Integer *limit = 56; // maximum number of records to return (optional)
+                            <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">User *body = ; // 
 
-DevelopersApi *apiInstance = [[DevelopersApi alloc] init];
+AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
 
-// searches inventory
-[apiInstance searchInventoryWith:searchString
-    skip:skip
-    limit:limit
-              completionHandler: ^(array[InventoryItem] output, NSError* error) {
+[apiInstance registerByGoogleWith:body
+              completionHandler: ^(User output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1169,15 +2061,12 @@ DevelopersApi *apiInstance = [[DevelopersApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Developers-searchInventory-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var OneCoinServerApi = require('one_coin_server_api');
+                            <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
 
-var api = new OneCoinServerApi.DevelopersApi()
-var opts = { 
-  'searchString': searchString_example, // {{String}} pass an optional search string for looking up inventory
-  'skip': 56, // {{Integer}} number of records to skip for pagination
-  'limit': 56 // {{Integer}} maximum number of records to return
-};
+var api = new OpenApiDefinition.AuthControllerApi()
+var body = ; // {{User}} 
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1185,14 +2074,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.searchInventory(opts, callback);
+api.registerByGoogle(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Developers-searchInventory-0-angular">
+                            <!--<div class="tab-pane" id="examples-AuthController-registerByGoogle-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Developers-searchInventory-0-csharp">
+                            <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1201,25 +2090,22 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class searchInventoryExample
+    public class registerByGoogleExample
     {
         public void main()
         {
 
-            var apiInstance = new DevelopersApi();
-            var searchString = searchString_example;  // String | pass an optional search string for looking up inventory (optional) 
-            var skip = 56;  // Integer | number of records to skip for pagination (optional) 
-            var limit = 56;  // Integer | maximum number of records to return (optional) 
+            var apiInstance = new AuthControllerApi();
+            var body = new User(); // User | 
 
             try
             {
-                // searches inventory
-                array[InventoryItem] result = apiInstance.searchInventory(searchString, skip, limit);
+                User result = apiInstance.registerByGoogle(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DevelopersApi.searchInventory: " + e.Message );
+                Debug.Print("Exception when calling AuthControllerApi.registerByGoogle: " + e.Message );
             }
         }
     }
@@ -1227,44 +2113,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Developers-searchInventory-0-php">
+                            <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\ApiDevelopersApi();
-$searchString = searchString_example; // String | pass an optional search string for looking up inventory
-$skip = 56; // Integer | number of records to skip for pagination
-$limit = 56; // Integer | maximum number of records to return
+$api_instance = new Swagger\Client\ApiAuthControllerApi();
+$body = ; // User | 
 
 try {
-    $result = $api_instance->searchInventory($searchString, $skip, $limit);
+    $result = $api_instance->registerByGoogle($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DevelopersApi->searchInventory: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthControllerApi->registerByGoogle: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Developers-searchInventory-0-perl">
+                            <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DevelopersApi;
+use WWW::SwaggerClient::AuthControllerApi;
 
-my $api_instance = WWW::SwaggerClient::DevelopersApi->new();
-my $searchString = searchString_example; # String | pass an optional search string for looking up inventory
-my $skip = 56; # Integer | number of records to skip for pagination
-my $limit = 56; # Integer | maximum number of records to return
+my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
+my $body = WWW::SwaggerClient::Object::User->new(); # User | 
 
 eval { 
-    my $result = $api_instance->searchInventory(searchString => $searchString, skip => $skip, limit => $limit);
+    my $result = $api_instance->registerByGoogle(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DevelopersApi->searchInventory: $@\n";
+    warn "Exception when calling AuthControllerApi->registerByGoogle: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Developers-searchInventory-0-python">
+                            <div class="tab-pane" id="examples-AuthController-registerByGoogle-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1272,17 +2154,321 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.DevelopersApi()
-searchString = searchString_example # String | pass an optional search string for looking up inventory (optional)
-skip = 56 # Integer | number of records to skip for pagination (optional)
-limit = 56 # Integer | maximum number of records to return (optional)
+api_instance = swagger_client.AuthControllerApi()
+body =  # User | 
 
 try: 
-    # searches inventory
-    api_response = api_instance.search_inventory(searchString=searchString, skip=skip, limit=limit)
+    api_response = api_instance.register_by_google(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DevelopersApi->searchInventory: %s\n" % e)</code></pre>
+    print("Exception when calling AuthControllerApi->registerByGoogle: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/User"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_registerByGoogle_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_registerByGoogle_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-registerByGoogle-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-registerByGoogle-200-schema">
+                                  <div id='responses-registerByGoogle-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/User"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-registerByGoogle-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-registerByGoogle-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-registerByGoogle-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AuthController-requestOtp">
+                      <article id="api-AuthController-requestOtp-0" data-group="User" data-name="requestOtp" data-version="0">
+                        <div class="pull-left">
+                          <h1>requestOtp</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/auth/login/otp</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AuthController-requestOtp-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-requestOtp-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AuthController-requestOtp-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AuthController-requestOtp-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AuthController-requestOtp-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: */*"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/auth/login/otp?login="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AuthController-requestOtp-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AuthControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String login = login_example; // String | 
+        try {
+            'String' result = apiInstance.requestOtp(login);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#requestOtp");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AuthController-requestOtp-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AuthControllerApi;
+
+public class AuthControllerApiExample {
+
+    public static void main(String[] args) {
+        AuthControllerApi apiInstance = new AuthControllerApi();
+        String login = login_example; // String | 
+        try {
+            'String' result = apiInstance.requestOtp(login);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthControllerApi#requestOtp");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AuthController-requestOtp-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AuthController-requestOtp-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *login = login_example; // 
+
+AuthControllerApi *apiInstance = [[AuthControllerApi alloc] init];
+
+[apiInstance requestOtpWith:login
+              completionHandler: ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-requestOtp-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+var api = new OpenApiDefinition.AuthControllerApi()
+var login = login_example; // {{String}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.requestOtp(login, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AuthController-requestOtp-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AuthController-requestOtp-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class requestOtpExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new AuthControllerApi();
+            var login = login_example;  // String | 
+
+            try
+            {
+                'String' result = apiInstance.requestOtp(login);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AuthControllerApi.requestOtp: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-requestOtp-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiAuthControllerApi();
+$login = login_example; // String | 
+
+try {
+    $result = $api_instance->requestOtp($login);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AuthControllerApi->requestOtp: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-requestOtp-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AuthControllerApi;
+
+my $api_instance = WWW::SwaggerClient::AuthControllerApi->new();
+my $login = login_example; # String | 
+
+eval { 
+    my $result = $api_instance->requestOtp(login => $login);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AuthControllerApi->requestOtp: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AuthController-requestOtp-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AuthControllerApi()
+login = login_example # String | 
+
+try: 
+    api_response = api_instance.request_otp(login)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AuthControllerApi->requestOtp: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1298,65 +2484,21 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">searchString</td>
+                                <tr><td style="width:150px;">login*</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_searchInventory_searchString">
+                                    <div id="d2e199_requestOtp_login">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
                                                     String
                                                 </span>
                                 
-                                                    <div class="inner description">
-                                                        pass an optional search string for looking up inventory
-                                                    </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">skip</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_searchInventory_skip">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    Integer
-                                                </span>
-                                                    <span class="format">
-                                                        (int32)
-                                                    </span>
-                                
-                                                    <div class="inner description">
-                                                        number of records to skip for pagination
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                                <tr><td style="width:150px;">limit</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_searchInventory_limit">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    Integer
-                                                </span>
-                                                    <span class="format">
-                                                        (int32)
-                                                    </span>
-                                
-                                                    <div class="inner description">
-                                                        maximum number of records to return
-                                                    </div>
-                                            </div>
+                                                <div class="inner required">
+                                                    Required
+                                                </div>
                                         </div>
                                     </div>
                                 </td>
@@ -1364,35 +2506,32 @@ except ApiException as e:
                             </table>
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - search results matching criteria </h3>
+                            <h3> Status: 200 - OK </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-searchInventory-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-requestOtp-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-searchInventory-200-schema">
-                                  <div id='responses-searchInventory-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-requestOtp-200-schema">
+                                  <div id='responses-requestOtp-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "search results matching criteria",
+  "description" : "OK",
   "content" : {
-    "application/json" : {
+    "*/*" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/InventoryItem"
-        },
-        "x-content-type" : "application/json"
+        "type" : "string",
+        "x-content-type" : "*/*"
       }
     }
   }
 };
-                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        var schema = schemaWrapper.content["*/*"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
@@ -1405,23 +2544,529 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-searchInventory-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-searchInventory-200-schema-200');
+                                        $('#responses-requestOtp-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-requestOtp-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-searchInventory-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-requestOtp-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - bad input parameter </h3>
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-UserController">
+                  <h1>UserController</h1>
+                    <div id="api-UserController-generateUserTotpSeed">
+                      <article id="api-UserController-generateUserTotpSeed-0" data-group="User" data-name="generateUserTotpSeed" data-version="0">
+                        <div class="pull-left">
+                          <h1>generateUserTotpSeed</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/user/totp</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserController-generateUserTotpSeed-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserController-generateUserTotpSeed-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserController-generateUserTotpSeed-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserController-generateUserTotpSeed-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserController-generateUserTotpSeed-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: */*"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/user/totp"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.UserControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserControllerApiExample {
+
+    public static void main(String[] args) {
+        
+        UserControllerApi apiInstance = new UserControllerApi();
+        try {
+            'String' result = apiInstance.generateUserTotpSeed();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserControllerApi#generateUserTotpSeed");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserControllerApi;
+
+public class UserControllerApiExample {
+
+    public static void main(String[] args) {
+        UserControllerApi apiInstance = new UserControllerApi();
+        try {
+            'String' result = apiInstance.generateUserTotpSeed();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserControllerApi#generateUserTotpSeed");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+UserControllerApi *apiInstance = [[UserControllerApi alloc] init];
+
+[apiInstance generateUserTotpSeedWithCompletionHandler: 
+              ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+var api = new OpenApiDefinition.UserControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.generateUserTotpSeed(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class generateUserTotpSeedExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new UserControllerApi();
+
+            try
+            {
+                'String' result = apiInstance.generateUserTotpSeed();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserControllerApi.generateUserTotpSeed: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiUserControllerApi();
+
+try {
+    $result = $api_instance->generateUserTotpSeed();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserControllerApi->generateUserTotpSeed: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::UserControllerApi;
+
+my $api_instance = WWW::SwaggerClient::UserControllerApi->new();
+
+eval { 
+    my $result = $api_instance->generateUserTotpSeed();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserControllerApi->generateUserTotpSeed: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-generateUserTotpSeed-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserControllerApi()
+
+try: 
+    api_response = api_instance.generate_user_totp_seed()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserControllerApi->generateUserTotpSeed: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-generateUserTotpSeed-200-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-generateUserTotpSeed-200-schema">
+                                  <div id='responses-generateUserTotpSeed-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "string",
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-generateUserTotpSeed-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-generateUserTotpSeed-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-generateUserTotpSeed-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-UserController-getUserInfo">
+                      <article id="api-UserController-getUserInfo-0" data-group="User" data-name="getUserInfo" data-version="0">
+                        <div class="pull-left">
+                          <h1>getUserInfo</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/v1/user/</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserController-getUserInfo-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserController-getUserInfo-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserController-getUserInfo-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserController-getUserInfo-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserController-getUserInfo-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: */*"\
+"https://virtserver.swaggerhub.com/OneCoin/OneCoinServerApi/1.0.0/api/v1/user/"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserController-getUserInfo-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.UserControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserControllerApiExample {
+
+    public static void main(String[] args) {
+        
+        UserControllerApi apiInstance = new UserControllerApi();
+        try {
+            User result = apiInstance.getUserInfo();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserControllerApi#getUserInfo");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserController-getUserInfo-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UserControllerApi;
+
+public class UserControllerApiExample {
+
+    public static void main(String[] args) {
+        UserControllerApi apiInstance = new UserControllerApi();
+        try {
+            User result = apiInstance.getUserInfo();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserControllerApi#getUserInfo");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserController-getUserInfo-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserController-getUserInfo-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+UserControllerApi *apiInstance = [[UserControllerApi alloc] init];
+
+[apiInstance getUserInfoWithCompletionHandler: 
+              ^(User output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-getUserInfo-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+var api = new OpenApiDefinition.UserControllerApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getUserInfo(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserController-getUserInfo-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserController-getUserInfo-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getUserInfoExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new UserControllerApi();
+
+            try
+            {
+                User result = apiInstance.getUserInfo();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UserControllerApi.getUserInfo: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-getUserInfo-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiUserControllerApi();
+
+try {
+    $result = $api_instance->getUserInfo();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserControllerApi->getUserInfo: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-getUserInfo-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::UserControllerApi;
+
+my $api_instance = WWW::SwaggerClient::UserControllerApi->new();
+
+eval { 
+    my $result = $api_instance->getUserInfo();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserControllerApi->getUserInfo: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserController-getUserInfo-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UserControllerApi()
+
+try: 
+    api_response = api_instance.get_user_info()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserControllerApi->getUserInfo: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getUserInfo-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getUserInfo-200-schema">
+                                  <div id='responses-getUserInfo-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/User"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getUserInfo-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getUserInfo-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getUserInfo-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>
@@ -1433,10 +3078,10 @@ except ApiException as e:
             <div id="api-_footer">
               <p>Suggestions, contact, support and error reporting;
                   <div class="app-desc">Information URL: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
-                  <div class="app-desc">Contact Info: <a href="you@your-company.com">you@your-company.com</a></div>
+                  <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
               </p>
-                <div class="license-info">Apache 2.0</div>
-                <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+                <div class="license-info">All rights reserved</div>
+                <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
             </div>
           </div>
       </div>
